@@ -1,0 +1,51 @@
+ul.nav {
+  width: 25%; /* set a max width for long nav entries */
+  width: 100%; /* Because the nav is horizontal, it should take up the whole width */
+  list-style-type: none; /* no bullets */
+  margin: 0; /* turn off default */
+  padding: 0; /* turn off default */
+  margin-bottom: 2em;
+  background-color: #f1f1f1; /* just make it clear it's a navbar or whatever */
+  /* position: fixed; */ /* takes it out of the flow */
+  /* position: relative; */ /* why? */
+  /* height: 100%; */ /* do we need this? */
+  /* height: auto; */ /* do we need this? */
+  overflow: scroll;  /* what to do with entries too long to fit */
+}
+
+ul.nav li a {
+  display: block; /* needed for padding to take effect */
+  float: left;
+  padding: 8px 16px; /* separate them a bit */
+  padding: 15px;
+}
+
+ul.nav li a {
+  color: #000; /* remove blue colour for links */
+  text-decoration: none; /* remove underline for links */
+}
+
+/* different rules for narrower screens */
+@media screen and (max-width: 1000px) {
+  ul.nav li {
+    text-align: center;
+  }
+  ul.nav li a {
+    float: none;
+  }
+  ul.nav li a.separator {
+  
+  }
+}
+
+/* special colour for the active nav entry */
+ul.nav li a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* special colour for hovered nav entry */
+ul.nav li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
