@@ -1,49 +1,42 @@
 main {
     font-family: serif;
     font-size: 18px;
-    max-width: 500px;
-    /* max-width: 18em; */
-    /* Maximum without images overlapping... */
-}
-
-@media screen and (min-width: 1001px) {
-    main {
-        margin-left: 660px;
-        margin-right: 5em;
-        max-width: 35em;
-    }
-
-    .pagenum {
-        position: absolute;
-        left: 1%;
-        /* right margin from the containing box */
-    }
-
-    /* Doesn't seem to apply to lazy-loaded images though! */
-    .pagenum img {
-        width: 630px;
-        max-width: 630px;
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    .pagenum img {
-        display: block;
-        /* center, full-width */
-        /*
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
-      width: 100vw;
-     */
-    }
+    max-width: 35rem;
 }
 
 .pagenum img {
     border: 1px solid red;
 }
 
+/* On a narrow screen, the image occupies full width. */
+@media screen and (max-width: 959px) {
+    .pagenum img {
+        display: block;
+        /* The same width as "main" */
+        width: 35rem;
+    }
+}
+
+/* On a sufficiently wide screen, we can display the prose to the right of the (floated-left) images. */
+@media screen and (min-width: 960px) {
+    main {
+        margin-left: 660px;
+        margin-right: 5em;
+    }
+
+    .pagenum {
+        position: absolute;
+        /* This means right margin from the containing box */
+        left: 1%;
+    }
+
+    /* Doesn't seem to apply to lazy-loaded images though! */
+    .pagenum img {
+        width: 630px;
+    }
+}
+
+/* We use <pre>...</pre> for verses. */
 pre {
     font-family: serif;
     margin-left: 25%;
@@ -51,6 +44,7 @@ pre {
     margin-top: -0.3em;
 }
 
+/* An empty paragraph inserted between paragraphs (I don't remember why), but we want it to not take height. */
 p.parbreak {
     margin-top: -4px;
     margin-bottom: -4px;
@@ -58,9 +52,8 @@ p.parbreak {
     height: 0.0px;
 }
 
+/* Just matching the style of Ryder's original I think? */
 h1,
 h2 {
     font-variant: small-caps;
-    /* text-transform: lowercase; */
-    /* letter-spacing: 0.1em; */
 }
