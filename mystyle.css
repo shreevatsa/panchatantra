@@ -16,8 +16,10 @@ main {
     left: 1%;      /* right margin from the containing box */
  }
 
+/* Doesn't seem to apply to lazy-loaded images though! */
  .pagenum img {
     width: 630px;
+    max-width: 630px;
  }
 }
 
