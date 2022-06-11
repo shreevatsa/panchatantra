@@ -1,44 +1,47 @@
 main {
-    font-family:serif;
+    font-family: serif;
     font-size: 18px;
     max-width: 500px;
-    /* max-width: 18em; */ /* Maximum without images overlapping... */
+    /* max-width: 18em; */
+    /* Maximum without images overlapping... */
 }
 
 @media screen and (min-width: 1001px) {
- main {
-    margin-left: 660px;
-    margin-right: 5em;
-    max-width: 35em;
- }
- .pagenum {
-    position: absolute;
-    left: 1%;      /* right margin from the containing box */
- }
+    main {
+        margin-left: 660px;
+        margin-right: 5em;
+        max-width: 35em;
+    }
 
-/* Doesn't seem to apply to lazy-loaded images though! */
- .pagenum img {
-    width: 630px;
-    max-width: 630px;
- }
+    .pagenum {
+        position: absolute;
+        left: 1%;
+        /* right margin from the containing box */
+    }
+
+    /* Doesn't seem to apply to lazy-loaded images though! */
+    .pagenum img {
+        width: 630px;
+        max-width: 630px;
+    }
 }
 
 @media screen and (max-width: 1000px) {
-  .pagenum img {
-      display: block;
-      /* center, full-width */
-      /*
+    .pagenum img {
+        display: block;
+        /* center, full-width */
+        /*
       left: 50%;
       right: 50%;
       margin-left: -50vw;
       margin-right: -50vw;
       width: 100vw;
      */
-  }
+    }
 }
 
 .pagenum img {
-   border: 1px solid red;
+    border: 1px solid red;
 }
 
 pre {
@@ -55,7 +58,8 @@ p.parbreak {
     height: 0.0px;
 }
 
-h1, h2 {
+h1,
+h2 {
     font-variant: small-caps;
     /* text-transform: lowercase; */
     /* letter-spacing: 0.1em; */
