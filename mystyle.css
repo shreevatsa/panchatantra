@@ -1,10 +1,16 @@
 main {
     font-family:serif;
     font-size: 18px;
-    max-width: 18em; /* Maximum without images overlapping... */
+    max-width: 500px;
+    /* max-width: 18em; */ /* Maximum without images overlapping... */
 }
 
 @media screen and (min-width: 1001px) {
+ main {
+    margin-left: 660px;
+    margin-right: 5em;
+    max-width: 35em;
+ }
  .pagenum {
     position: absolute;
     left: 1%;      /* right margin from the containing box */
@@ -12,11 +18,6 @@ main {
 
  .pagenum img {
     width: 630px;
- }
-
- main {
-    margin-left: 660px;
-    margin-right: 5em;
  }
 }
 
