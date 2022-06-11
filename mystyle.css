@@ -1,7 +1,12 @@
 main {
     font-family: serif;
     font-size: 18px;
-    max-width: 35rem;
+    max-width: 32rem;
+}
+
+/* With heavy heart, use smaller font for the outer frame story, to match Hertel's Sanskrit book. Can revert when we have paragraph-level alignment. */
+.outer-frame-story {
+    font-size: 14px;
 }
 
 .pagenum img {
@@ -13,7 +18,7 @@ main {
     .pagenum img {
         display: block;
         /* The same width as "main" */
-        width: 35rem;
+        width: 32rem;
     }
 }
 
@@ -32,7 +37,7 @@ main {
 
     /* Doesn't seem to apply to lazy-loaded images though! */
     .pagenum img {
-        width: 630px;
+        width: 500px;
     }
 }
 
