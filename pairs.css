@@ -81,18 +81,33 @@ main.pairs-layout {
     background: #eee;
 }
 
-.pair-left .loupe-wrapper {
+.pair-left .scan-image {
     position: relative;
     overflow: hidden;
-    display: block;
     margin: 0 0 0.75rem auto;
     border-radius: 0.25rem;
     background: #eee;
+    aspect-ratio: calc((2088 / 3121) / clamp(0.0001, 1 - var(--frac, 0), 1));
 }
 
-.pair-left .loupe-wrapper img {
+.pair-left .scan-image img {
     margin: 0;
     border-radius: 0;
+    transform: translateY(calc(var(--frac, 0) * -100%));
+    clip-path: inset(calc(var(--frac, 0) * 100%) 0 0 0);
+}
+
+.pair-left .scan-image .loupe-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.pair-left .scan-image .loupe-wrapper img {
+    width: 100%;
+    height: auto;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -147,6 +162,10 @@ main.pairs-layout {
     .pair-left {
         flex-basis: auto;
         width: 100%;
+    }
+
+    .pair-left .scan-image {
+        margin: 0 0 0.75rem 0;
     }
 
     .pair-left img {

@@ -102,6 +102,19 @@
         }
       };
 
+      var registerScanImage = function (img, container) {
+        if (!img || !container) {
+          return;
+        }
+
+        container.classList.add('scan-image');
+
+        var frac = img.style.getPropertyValue('--frac');
+        if (frac) {
+          container.style.setProperty('--frac', frac.trim());
+        }
+      };
+
       if (images.length === 1) {
         var img = images[0];
         var src = img.getAttribute('src');
@@ -110,10 +123,12 @@
           link.textContent = '';
           link.appendChild(img);
           left.appendChild(link);
+          registerScanImage(img, link);
         } else {
           var wrapper = document.createElement('a');
           wrapper.appendChild(img);
           ensureLinkAttrs(wrapper, src);
+          registerScanImage(img, wrapper);
           left.appendChild(wrapper);
         }
         appendedImage = true;
