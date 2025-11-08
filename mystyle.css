@@ -15,9 +15,10 @@ main {
 }
 
 main.pairs-layout {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-inline: 1rem;
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding-inline: clamp(0.75rem, 2vw, 2.5rem);
 }
 
 /* With heavy heart, use smaller font for the outer frame story, to match Hertel's Sanskrit book. Can revert when we have paragraph-level alignment. */
@@ -81,8 +82,8 @@ main.pairs-layout {
 }
 
 .pair-right {
-    flex: 1 1 auto;
-    max-width: 46rem;
+    flex: 1 1 0%;
+    min-width: 0;
 }
 
 .pair-right p {
