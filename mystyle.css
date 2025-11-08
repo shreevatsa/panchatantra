@@ -92,6 +92,8 @@ main.pairs-layout {
 
 .pair-right pre {
     margin-left: 0;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
 }
 
 /* Narrow: stack image above text */
@@ -118,8 +120,8 @@ main.pairs-layout {
 pre {
     font-family: serif;
     margin-left: 25%;
-    margin-bottom: -0.3em;
-    margin-top: -0.3em;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
 }
 
 /* An empty paragraph inserted between paragraphs (I don't remember why), but we want it to not take height. */
@@ -138,4 +140,6 @@ h2 {
 
 main.pairs-layout pre {
     margin-left: 0;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
 }
