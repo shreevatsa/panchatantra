@@ -1,8 +1,6 @@
 :root {
     /* Left column width as percentage of viewport width */
     --left-col: 30;
-    /* How much to magnify scans when hovering/focusing them */
-    --scan-zoom: 1.65;
 }
 
 *,
@@ -62,7 +60,6 @@ main.pairs-layout {
     position: relative;
     flex: 0 0 calc(var(--left-col) * 1%);
     max-width: 100%;
-    overflow: visible;
 }
 
 .pair-left a {
@@ -83,7 +80,6 @@ main.pairs-layout {
     margin: 0 0 0.75rem auto;
     border-radius: 0.25rem;
     background: #eee;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .pair-right {
@@ -118,38 +114,6 @@ main.pairs-layout {
 
     .pair-right {
         max-width: 100%;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .pair-left img {
-        transition: none;
-    }
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .pair-left a,
-    .pair-left img {
-        cursor: zoom-in;
-    }
-
-    .pair-left:hover,
-    .pair-left:focus-within {
-        z-index: 5;
-    }
-
-    .pair-left:hover img,
-    .pair-left:focus-within img {
-        transform: scale(var(--scan-zoom));
-        transform-origin: top left;
-        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
-    }
-
-    .pair-left:hover a,
-    .pair-left:focus-within a,
-    .pair-left:hover img,
-    .pair-left:focus-within img {
-        cursor: zoom-out;
     }
 }
 

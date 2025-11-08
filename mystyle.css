@@ -1,63 +1,54 @@
 main {
-    font-family:serif;
-    /* max-width: 500px; */
+    font-family: serif;
     font-size: 18px;
+    max-width: 32rem;
 }
 
-@media screen and (min-width: 1001px) {
- main {
-     /* margin-left: calc(100vw - 630px); */
-     margin-left: 960px;
-     margin-right: 5em /* = 90px */;
-     max-width: 35em  /* = 630px */;
- }
-
- .pagenum {
-     /* width: calc(100vw - 650px); */
-     /* border: 1px solid blue; */
-     position: absolute;
-     left: 1%;      /* right margin from the containing box */
- }
-
- .pagenum img {
-     width: 930px;
-     /* width: calc(100vw - 650px); */
-
- }
-}
-
-@media screen and (max-width: 1000px) {
-    .pagenum {
-	/* border: 1px solid blue; */
-	display: block;
-	width: 100vw;
-	margin-bottom: 1em;
-	margin-top: 1em;
-	/* margin-left: -50vw; */
-	/* margin-right: -50vw; */
-	/* left: 50%; */
-	/* right: 50%; */
-
-    }
-
-  .pagenum img {
-      display: block;
-      width: 100vw;
-      /* center, full-width */
-      /*
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
-      width: 100vw;
-     */
-  }
+/* With heavy heart, use smaller font for the outer frame story, to match Hertel's Sanskrit book. Can revert when we have paragraph-level alignment. */
+.outer-frame-story {
+    font-size: 14px;
 }
 
 .pagenum img {
-   border: 1px solid red;
+    border: 1px solid red;
 }
 
+/* On a narrow screen, the image occupies full width. */
+@media screen and (max-width: 959px) {
+    .pagenum img {
+        display: block;
+        /* The same width as "main" */
+        width: 32rem;
+    }
+}
+
+/* On a sufficiently wide screen, we can display the prose to the right of the (floated-left) images. */
+@media screen and (min-width: 960px) {
+    main {
+        margin-left: 660px;
+        margin-right: 5em;
+    }
+
+    .pagenum {
+        position: absolute;
+        /* This is to override the margin-left that we have set above. */
+        left: 1%;
+        /* This is for the margin-top trick with the images below.
+           From https://stackoverflow.com/a/23220895 */
+        overflow: hidden;
+    }
+
+    /* Doesn't seem to apply to lazy-loaded images though! */
+    .pagenum img {
+        --width: 500px;
+        /* The original images are 2088 pixels wide and 3121 pixels tall.
+           We want to leave out `--frac` of the top, so set negative margin. */
+        margin-top: calc(-1 * var(--frac, 0.15) * 3121 * var(--width) / 2088 );
+        width: var(--width);
+    }
+}
+
+/* We use <pre>...</pre> for verses. */
 pre {
     font-family: serif;
     margin-left: 25%;
@@ -65,6 +56,7 @@ pre {
     margin-top: -0.3em;
 }
 
+/* An empty paragraph inserted between paragraphs (I don't remember why), but we want it to not take height. */
 p.parbreak {
     margin-top: -4px;
     margin-bottom: -4px;
@@ -72,8 +64,8 @@ p.parbreak {
     height: 0.0px;
 }
 
-h1, h2 {
+/* Just matching the style of Ryder's original I think? */
+h1,
+h2 {
     font-variant: small-caps;
-    /* text-transform: lowercase; */
-    /* letter-spacing: 0.1em; */
 }
