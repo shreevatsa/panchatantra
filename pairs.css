@@ -87,13 +87,13 @@ main.pairs-layout {
     margin: 0 0 0.75rem auto;
     border-radius: 0.25rem;
     background: #eee;
-    aspect-ratio: calc((2088 / 3121) / clamp(0.0001, 1 - var(--frac, 0), 1));
+    aspect-ratio: calc((2088 / 3121) / clamp(0.0001, 1 - var(--frac, 0.15), 1));
 }
 
 .pair-left .scan-image img {
     margin: 0;
     border-radius: 0;
-    transform: translateY(calc(var(--frac, 0) * -100%));
+    transform: translateY(calc(var(--frac, 0.15) * -100%));
 }
 
 .pair-left .scan-image .loupe-wrapper {
