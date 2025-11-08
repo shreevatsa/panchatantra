@@ -1,7 +1,23 @@
+:root {
+    /* Left column width as percentage of viewport width */
+    --left-col: 30;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 main {
     font-family: serif;
     font-size: 18px;
-    max-width: 32rem;
+}
+
+main.pairs-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-inline: 1rem;
 }
 
 /* With heavy heart, use smaller font for the outer frame story, to match Hertel's Sanskrit book. Can revert when we have paragraph-level alignment. */
@@ -9,42 +25,91 @@ main {
     font-size: 14px;
 }
 
-.pagenum img {
-    border: 1px solid red;
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    align-items: center;
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    margin: 0 0 1.5rem;
+    border-radius: 0.75rem;
+    background: #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
-/* On a narrow screen, the image occupies full width. */
-@media screen and (max-width: 959px) {
-    .pagenum img {
-        display: block;
-        /* The same width as "main" */
-        width: 32rem;
-    }
+.controls label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
 }
 
-/* On a sufficiently wide screen, we can display the prose to the right of the (floated-left) images. */
-@media screen and (min-width: 960px) {
-    main {
-        margin-left: 660px;
-        margin-right: 5em;
+.controls input[type="range"] {
+    width: 220px;
+}
+
+.pair {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-block: 2rem;
+}
+
+.pair-left {
+    flex: 0 0 calc(var(--left-col) * 1%);
+    max-width: 100%;
+}
+
+.pair-left a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.pair-left .scan-link {
+    font-size: 0.85rem;
+    text-align: right;
+}
+
+.pair-left img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 0 0.75rem auto;
+    border-radius: 0.25rem;
+    background: #eee;
+}
+
+.pair-right {
+    flex: 1 1 auto;
+    max-width: 46rem;
+}
+
+.pair-right p {
+    margin: 0 0 0.75rem;
+}
+
+.pair-right pre {
+    margin-left: 0;
+}
+
+/* Narrow: stack image above text */
+@media (max-width: 800px) {
+    .pair {
+        flex-direction: column;
     }
 
-    .pagenum {
-        position: absolute;
-        /* This is to override the margin-left that we have set above. */
-        left: 1%;
-        /* This is for the margin-top trick with the images below.
-           From https://stackoverflow.com/a/23220895 */
-        overflow: hidden;
+    .pair-left {
+        flex-basis: auto;
+        width: 100%;
     }
 
-    /* Doesn't seem to apply to lazy-loaded images though! */
-    .pagenum img {
-        --width: 500px;
-        /* The original images are 2088 pixels wide and 3121 pixels tall.
-           We want to leave out `--frac` of the top, so set negative margin. */
-        margin-top: calc(-1 * var(--frac, 0.15) * 3121 * var(--width) / 2088 );
-        width: var(--width);
+    .pair-left img {
+        margin: 0 0 0.75rem 0;
+    }
+
+    .pair-right {
+        max-width: 100%;
     }
 }
 
@@ -68,4 +133,8 @@ p.parbreak {
 h1,
 h2 {
     font-variant: small-caps;
+}
+
+main.pairs-layout pre {
+    margin-left: 0;
 }
