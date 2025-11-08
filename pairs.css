@@ -81,6 +81,48 @@ main.pairs-layout {
     background: #eee;
 }
 
+.pair-left .loupe-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    margin: 0 0 0.75rem auto;
+    border-radius: 0.25rem;
+    background: #eee;
+}
+
+.pair-left .loupe-wrapper img {
+    margin: 0;
+    border-radius: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .pair-left .loupe-wrapper {
+        cursor: zoom-in;
+    }
+
+    .pair-left .loupe-wrapper .loupe-lens {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: var(--loupe-size, 180px);
+        height: var(--loupe-size, 180px);
+        border-radius: 50%;
+        pointer-events: none;
+        opacity: 0;
+        transform: translate(-9999px, -9999px);
+        transition: opacity 0.15s ease;
+        border: 2px solid rgba(255, 255, 255, 0.9);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 200% 200%;
+    }
+
+    .pair-left .loupe-wrapper.is-active .loupe-lens {
+        opacity: 1;
+    }
+}
+
 .pair-right {
     flex: 1 1 0%;
     min-width: 0;
