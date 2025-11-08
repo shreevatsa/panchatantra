@@ -22,13 +22,10 @@
     existingControls.className = 'controls';
     existingControls.innerHTML = [
       '<label>',
-      '  <span>Divider position (original column width)</span>',
-      '  <input id="dividerRange" type="range" min="18" max="90" value="30">',
-      '  <span id="dividerValue">30%</span>',
-      '</label>',
-      '<div style="font-size:0.8rem; max-width:260px; color:#555;">',
-      '  Adjust the slider, then use your browser\'s zoom to fine-tune how big the scans vs. translation appear.',
-      '</div>'
+      '  <span>image width</span>',
+      '  <input id="dividerRange" type="range" min="10" max="90" value="50">',
+      '  <span id="dividerValue">50%</span>',
+      '</label>'
     ].join('');
     main.insertBefore(existingControls, main.firstChild);
   }
@@ -100,8 +97,8 @@
         if (!anchor.getAttribute('aria-label')) {
           anchor.setAttribute('aria-label', 'Open full-page scan');
         }
-        if (!anchor.getAttribute('title')) {
-          anchor.setAttribute('title', 'Open full-page scan');
+        if (anchor.hasAttribute('title')) {
+          anchor.removeAttribute('title');
         }
       };
 
