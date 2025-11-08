@@ -94,7 +94,6 @@ main.pairs-layout {
     margin: 0;
     border-radius: 0;
     transform: translateY(calc(var(--frac, 0) * -100%));
-    clip-path: inset(calc(var(--frac, 0) * 100%) 0 0 0);
 }
 
 .pair-left .scan-image .loupe-wrapper {
