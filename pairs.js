@@ -102,6 +102,19 @@
         }
       };
 
+      var registerScanImage = function (img, container) {
+        if (!img || !container) {
+          return;
+        }
+
+        container.classList.add('scan-image');
+
+        var frac = img.style.getPropertyValue('--frac');
+        if (frac) {
+          container.style.setProperty('--frac', frac.trim());
+        }
+      };
+
       if (images.length === 1) {
         var img = images[0];
         var src = img.getAttribute('src');
@@ -110,10 +123,12 @@
           link.textContent = '';
           link.appendChild(img);
           left.appendChild(link);
+          registerScanImage(img, link);
         } else {
           var wrapper = document.createElement('a');
           wrapper.appendChild(img);
           ensureLinkAttrs(wrapper, src);
+          registerScanImage(img, wrapper);
           left.appendChild(wrapper);
         }
         appendedImage = true;
@@ -212,32 +227,50 @@
         return;
       }
 
+      var wrapperRect = wrapper.getBoundingClientRect();
       var rect = img.getBoundingClientRect();
-      if (!rect.width || !rect.height) {
+      if (!wrapperRect.width || !wrapperRect.height || !rect.width || !rect.height) {
         return;
       }
 
       var lensWidth = lens.offsetWidth || 0;
       var lensHeight = lens.offsetHeight || 0;
-      var x = event.clientX - rect.left;
-      var y = event.clientY - rect.top;
 
-      if (x < 0) {
-        x = 0;
-      } else if (x > rect.width) {
-        x = rect.width;
+      var visibleX = event.clientX - wrapperRect.left;
+      var visibleY = event.clientY - wrapperRect.top;
+
+      if (visibleX < 0) {
+        visibleX = 0;
+      } else if (visibleX > wrapperRect.width) {
+        visibleX = wrapperRect.width;
       }
 
-      if (y < 0) {
-        y = 0;
-      } else if (y > rect.height) {
-        y = rect.height;
+      if (visibleY < 0) {
+        visibleY = 0;
+      } else if (visibleY > wrapperRect.height) {
+        visibleY = wrapperRect.height;
       }
 
       var halfW = lensWidth / 2;
       var halfH = lensHeight / 2;
-      lens.style.transform = 'translate(' + (x - halfW) + 'px, ' + (y - halfH) + 'px)';
-      lens.style.backgroundPosition = (-(x * zoom - halfW)) + 'px ' + (-(y * zoom - halfH)) + 'px';
+      lens.style.transform = 'translate(' + (visibleX - halfW) + 'px, ' + (visibleY - halfH) + 'px)';
+
+      var actualX = event.clientX - rect.left;
+      var actualY = event.clientY - rect.top;
+
+      if (actualX < 0) {
+        actualX = 0;
+      } else if (actualX > rect.width) {
+        actualX = rect.width;
+      }
+
+      if (actualY < 0) {
+        actualY = 0;
+      } else if (actualY > rect.height) {
+        actualY = rect.height;
+      }
+
+      lens.style.backgroundPosition = (-(actualX * zoom - halfW)) + 'px ' + (-(actualY * zoom - halfH)) + 'px';
     };
 
     wrapper.addEventListener('mouseenter', handleEnter);
