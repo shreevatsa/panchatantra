@@ -1,0 +1,182 @@
+:root {
+    /* Left column width as percentage of viewport width */
+    --left-col: 30;
+    /* How much to magnify scans when hovering/focusing them */
+    --scan-zoom: 1.65;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+main {
+    font-family: serif;
+    font-size: 18px;
+}
+
+main.pairs-layout {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding-inline: clamp(0.75rem, 2vw, 2.5rem);
+}
+
+/* With heavy heart, use smaller font for the outer frame story, to match Hertel's Sanskrit book. Can revert when we have paragraph-level alignment. */
+.outer-frame-story {
+    font-size: 14px;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    align-items: center;
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    margin: 0 0 1.5rem;
+    border-radius: 0.75rem;
+    background: #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.controls label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.controls input[type="range"] {
+    width: 220px;
+}
+
+.pair {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-block: 2rem;
+}
+
+.pair-left {
+    position: relative;
+    flex: 0 0 calc(var(--left-col) * 1%);
+    max-width: 100%;
+    overflow: visible;
+}
+
+.pair-left a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.pair-left .scan-link {
+    font-size: 0.85rem;
+    text-align: right;
+}
+
+.pair-left img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 0 0.75rem auto;
+    border-radius: 0.25rem;
+    background: #eee;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pair-right {
+    flex: 1 1 0%;
+    min-width: 0;
+}
+
+.pair-right p {
+    margin: 0 0 0.75rem;
+}
+
+.pair-right pre {
+    margin-left: 0;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+}
+
+/* Narrow: stack image above text */
+@media (max-width: 800px) {
+    .pair {
+        flex-direction: column;
+    }
+
+    .pair-left {
+        flex-basis: auto;
+        width: 100%;
+    }
+
+    .pair-left img {
+        margin: 0 0 0.75rem 0;
+    }
+
+    .pair-right {
+        max-width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pair-left img {
+        transition: none;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .pair-left a,
+    .pair-left img {
+        cursor: zoom-in;
+    }
+
+    .pair-left:hover,
+    .pair-left:focus-within {
+        z-index: 5;
+    }
+
+    .pair-left:hover img,
+    .pair-left:focus-within img {
+        transform: scale(var(--scan-zoom));
+        transform-origin: top left;
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+    }
+
+    .pair-left:hover a,
+    .pair-left:focus-within a,
+    .pair-left:hover img,
+    .pair-left:focus-within img {
+        cursor: zoom-out;
+    }
+}
+
+/* We use <pre>...</pre> for verses. */
+pre {
+    font-family: serif;
+    margin-left: 25%;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+}
+
+/* An empty paragraph inserted between paragraphs (I don't remember why), but we want it to not take height. */
+p.parbreak {
+    margin-top: -4px;
+    margin-bottom: -4px;
+    line-height: 0.0px;
+    height: 0.0px;
+}
+
+/* Just matching the style of Ryder's original I think? */
+h1,
+h2 {
+    font-variant: small-caps;
+}
+
+main.pairs-layout pre {
+    margin-left: 0;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+}
