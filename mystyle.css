@@ -1,130 +1,70 @@
-:root {
-    /* Left column width as percentage of viewport width */
-    --left-col: 30;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
 main {
-    font-family: serif;
+    font-family:serif;
+    /* max-width: 500px; */
     font-size: 18px;
 }
 
-main.pairs-layout {
-    max-width: none;
-    width: 100%;
-    margin: 0;
-    padding-inline: clamp(0.75rem, 2vw, 2.5rem);
+@media screen and (min-width: 1001px) {
+ main {
+     /* margin-left: calc(100vw - 630px); */
+     margin-left: 960px;
+     margin-right: 5em /* = 90px */;
+     max-width: 35em  /* = 630px */;
+ }
+
+ .pagenum {
+     /* width: calc(100vw - 650px); */
+     /* border: 1px solid blue; */
+     position: absolute;
+     left: 1%;      /* right margin from the containing box */
+ }
+
+ .pagenum img {
+     width: 930px;
+     /* width: calc(100vw - 650px); */
+
+ }
 }
 
-/* With heavy heart, use smaller font for the outer frame story, to match Hertel's Sanskrit book. Can revert when we have paragraph-level alignment. */
-.outer-frame-story {
-    font-size: 14px;
-}
+@media screen and (max-width: 1000px) {
+    .pagenum {
+	/* border: 1px solid blue; */
+	display: block;
+	width: 100vw;
+	margin-bottom: 1em;
+	margin-top: 1em;
+	/* margin-left: -50vw; */
+	/* margin-right: -50vw; */
+	/* left: 50%; */
+	/* right: 50%; */
 
-.controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem 2rem;
-    align-items: center;
-    font-size: 0.9rem;
-    padding: 0.75rem 1rem;
-    margin: 0 0 1.5rem;
-    border-radius: 0.75rem;
-    background: #ffffff;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-}
-
-.controls label {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.controls input[type="range"] {
-    width: 220px;
-}
-
-.pair {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
-    margin-block: 2rem;
-}
-
-.pair-left {
-    flex: 0 0 calc(var(--left-col) * 1%);
-    max-width: 100%;
-}
-
-.pair-left a {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-}
-
-.pair-left .scan-link {
-    font-size: 0.85rem;
-    text-align: right;
-}
-
-.pair-left img {
-    display: block;
-    width: 100%;
-    height: auto;
-    margin: 0 0 0.75rem auto;
-    border-radius: 0.25rem;
-    background: #eee;
-}
-
-.pair-right {
-    flex: 1 1 0%;
-    min-width: 0;
-}
-
-.pair-right p {
-    margin: 0 0 0.75rem;
-}
-
-.pair-right pre {
-    margin-left: 0;
-    margin-top: 0.75em;
-    margin-bottom: 0.75em;
-}
-
-/* Narrow: stack image above text */
-@media (max-width: 800px) {
-    .pair {
-        flex-direction: column;
     }
 
-    .pair-left {
-        flex-basis: auto;
-        width: 100%;
-    }
-
-    .pair-left img {
-        margin: 0 0 0.75rem 0;
-    }
-
-    .pair-right {
-        max-width: 100%;
-    }
+  .pagenum img {
+      display: block;
+      width: 100vw;
+      /* center, full-width */
+      /*
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      width: 100vw;
+     */
+  }
 }
 
-/* We use <pre>...</pre> for verses. */
+.pagenum img {
+   border: 1px solid red;
+}
+
 pre {
     font-family: serif;
     margin-left: 25%;
-    margin-top: 0.75em;
-    margin-bottom: 0.75em;
+    margin-bottom: -0.3em;
+    margin-top: -0.3em;
 }
 
-/* An empty paragraph inserted between paragraphs (I don't remember why), but we want it to not take height. */
 p.parbreak {
     margin-top: -4px;
     margin-bottom: -4px;
@@ -132,14 +72,8 @@ p.parbreak {
     height: 0.0px;
 }
 
-/* Just matching the style of Ryder's original I think? */
-h1,
-h2 {
+h1, h2 {
     font-variant: small-caps;
-}
-
-main.pairs-layout pre {
-    margin-left: 0;
-    margin-top: 0.75em;
-    margin-bottom: 0.75em;
+    /* text-transform: lowercase; */
+    /* letter-spacing: 0.1em; */
 }
