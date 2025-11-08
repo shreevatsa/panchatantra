@@ -22,13 +22,10 @@
     existingControls.className = 'controls';
     existingControls.innerHTML = [
       '<label>',
-      '  <span>Divider position (original column width)</span>',
+      '  <span>image width</span>',
       '  <input id="dividerRange" type="range" min="10" max="90" value="50">',
       '  <span id="dividerValue">50%</span>',
-      '</label>',
-      '<div style="font-size:0.8rem; max-width:260px; color:#555;">',
-      '  Adjust the slider, then use your browser\'s zoom to fine-tune how big the scans vs. translation appear.',
-      '</div>'
+      '</label>'
     ].join('');
     main.insertBefore(existingControls, main.firstChild);
   }
