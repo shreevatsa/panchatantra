@@ -11,7 +11,7 @@
 
 main {
     font-family: serif;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 main.pairs-layout {
@@ -23,7 +23,7 @@ main.pairs-layout {
 
 /* With heavy heart, use smaller font for the outer frame story, to match Hertel's Sanskrit book. Can revert when we have paragraph-level alignment. */
 .outer-frame-story {
-    font-size: 14px;
+    font-size: 17px;
 }
 
 .controls {
