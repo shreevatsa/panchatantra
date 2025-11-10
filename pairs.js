@@ -52,6 +52,52 @@
     updateSlider();
   }
 
+  var createPairContainers = function () {
+    var pair = document.createElement('section');
+    pair.className = 'pair';
+    var left = document.createElement('div');
+    left.className = 'pair-left';
+    var right = document.createElement('div');
+    right.className = 'pair-right';
+    pair.appendChild(left);
+    pair.appendChild(right);
+    return { pair: pair, left: left, right: right };
+  };
+
+  var appendContentToRight = function (right, fragment) {
+    var appended = false;
+    Array.from(fragment.childNodes).forEach(function (node) {
+      if (node.nodeType === Node.TEXT_NODE && !node.textContent.trim()) {
+        return;
+      }
+      right.appendChild(node);
+      appended = true;
+    });
+
+    if (!appended) {
+      right.appendChild(document.createElement('p'));
+    }
+  };
+
+  var firstMarker = markers[0] || null;
+  if (firstMarker) {
+    var firstContent = existingControls ? existingControls.nextSibling : main.firstChild;
+    while (firstContent && firstContent.nodeType === Node.TEXT_NODE && !firstContent.textContent.trim()) {
+      firstContent = firstContent.nextSibling;
+    }
+
+    if (firstContent && firstContent !== firstMarker) {
+      var beforeRange = document.createRange();
+      beforeRange.setStartBefore(firstContent);
+      beforeRange.setEndBefore(firstMarker);
+      var beforeFragment = beforeRange.extractContents();
+      var beforePair = createPairContainers();
+      appendContentToRight(beforePair.right, beforeFragment);
+      main.insertBefore(beforePair.pair, firstMarker);
+      beforeRange.detach();
+    }
+  }
+
   markers.forEach(function (marker, index) {
     var nextMarker = markers[index + 1] || null;
 
@@ -73,14 +119,10 @@
     var fragment = range.extractContents();
     var span = fragment.querySelector('span.pagenum');
 
-    var pair = document.createElement('section');
-    pair.className = 'pair';
-    var left = document.createElement('div');
-    left.className = 'pair-left';
-    var right = document.createElement('div');
-    right.className = 'pair-right';
-    pair.appendChild(left);
-    pair.appendChild(right);
+    var containers = createPairContainers();
+    var pair = containers.pair;
+    var left = containers.left;
+    var right = containers.right;
 
     if (span) {
       var images = Array.from(span.querySelectorAll('img'));
@@ -160,16 +202,7 @@
       span.remove();
     }
 
-    Array.from(fragment.childNodes).forEach(function (node) {
-      if (node.nodeType === Node.TEXT_NODE && !node.textContent.trim()) {
-        return;
-      }
-      right.appendChild(node);
-    });
-
-    if (!right.childNodes.length) {
-      right.appendChild(document.createElement('p'));
-    }
+    appendContentToRight(right, fragment);
 
     range.insertNode(pair);
     range.detach();
