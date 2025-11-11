@@ -143,10 +143,6 @@ main.pairs-layout {
     min-width: 0;
 }
 
-.pair-right p {
-    margin: 0 0 0.75rem;
-}
-
 .pair-right pre {
     margin-left: 0;
     margin-top: 0.75em;
